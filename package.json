@@ -10,14 +10,19 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:punched-card.helloWorld"
+    "onCustomEditor:punched-card.edit"
   ],
   "main": "./dist/extension.js",
   "contributes": {
-    "commands": [
+    "customEditors": [
       {
-        "command": "punched-card.helloWorld",
-        "title": "Hello World"
+        "viewType": "punched-card.edit",
+        "displayName": "Edit Punched Card",
+        "selector": [
+          {
+            "filenamePattern": "*"
+          }
+        ]
       }
     ]
   },
