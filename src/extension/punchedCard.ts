@@ -35,6 +35,10 @@ export class PunchedCardProvider implements vscode.CustomTextEditorProvider {
    * Get the static html used for the editor webviews.
    */
   private getHtmlForWebview(webview: vscode.Webview): string {
+    const scriptUri = webview.asWebviewUri(
+      vscode.Uri.joinPath(this.context.extensionUri, "dist", "index.js")
+    );
+
     // Use a nonce to whitelist which scripts can be run
     const nonce = this.getNonce();
 
@@ -55,12 +59,8 @@ export class PunchedCardProvider implements vscode.CustomTextEditorProvider {
 				<title>Cat Scratch</title>
 			</head>
 			<body>
-				<div class="notes">
-					<div class="add-button">
-						<button>Hello World!!!!!!!</button>
-					</div>
-				</div>
-
+        <div id="root" />
+        <script nonce="${nonce}" src="${scriptUri}" />
 			</body>
 			</html>`;
   }
