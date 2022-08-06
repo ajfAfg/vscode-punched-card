@@ -29,6 +29,36 @@ export class PunchedCardProvider implements vscode.CustomTextEditorProvider {
       enableScripts: true,
     };
     webviewPanel.webview.html = this.getHtmlForWebview(webviewPanel.webview);
+
+    function updateWebview() {
+      webviewPanel.webview.postMessage({
+        type: "update",
+        text: document.getText(),
+      });
+    }
+
+    const changeDocumentSubscription = vscode.workspace.onDidChangeTextDocument(
+      (e) => {
+        if (e.document.uri.toString() === document.uri.toString()) {
+          updateWebview();
+        }
+      }
+    );
+
+    webviewPanel.onDidDispose(() => {
+      changeDocumentSubscription.dispose();
+    });
+
+    webviewPanel.webview.onDidReceiveMessage((e) => {
+      vscode.window.showInformationMessage(JSON.stringify(e));
+      switch (e.type) {
+        case "change":
+          this.change(document, e.text);
+          break;
+      }
+    });
+
+    updateWebview();
   }
 
   /**
@@ -67,6 +97,16 @@ export class PunchedCardProvider implements vscode.CustomTextEditorProvider {
         <script nonce="${nonce}" src="${scriptUri}" />
 			</body>
 			</html>`;
+  }
+
+  private change(document: vscode.TextDocument, text: string) {
+    const edit = new vscode.WorkspaceEdit();
+    edit.replace(
+      document.uri,
+      new vscode.Range(0, 0, document.lineCount, 0),
+      text
+    );
+    return vscode.workspace.applyEdit(edit);
   }
 
   private getNonce(): string {
