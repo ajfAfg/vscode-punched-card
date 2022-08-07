@@ -2,7 +2,7 @@
   "name": "punched-card",
   "displayName": "Punched card",
   "description": "",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "ajfAfg",
   "license": "MIT",
   "repository": {
@@ -29,7 +29,7 @@
             "filenamePattern": "*"
           }
         ],
-        "priority": "option"
+        "priority": "default"
       }
     ]
   },
@@ -42,7 +42,8 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "test": "node ./out/test/runTest.js",
+    "deploy": "vsce package && vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^7.2.0",
