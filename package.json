@@ -2,7 +2,7 @@
   "name": "punched-card",
   "displayName": "Punched card",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "ajfAfg",
   "license": "MIT",
   "repository": {
@@ -28,7 +28,8 @@
           {
             "filenamePattern": "*"
           }
-        ]
+        ],
+        "priority": "option"
       }
     ]
   },
@@ -70,6 +71,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0"
   }
 }

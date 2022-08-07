@@ -4,6 +4,7 @@ import { WebviewApi } from "vscode-webview";
 import { arrayChunk } from "./myArray";
 import { clone } from "./myObject";
 import { fromText, PunchedCard, toText } from "./punchedCard";
+import { FaTrashAlt } from "react-icons/fa";
 
 export const App: FC = () => {
   const [punchedCards, setPunchedCards] = useState<PunchedCard[]>([]);
@@ -40,26 +41,7 @@ export const App: FC = () => {
     index,
   }) => {
     return (
-      // <div className="w-8 h-8 rounded-full mx-auto border-2">
-      //   <button
-      //     // className=" my-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
-      //     className=""
-      //     onClick={() => {
-      //       const newPunchedCards = clone(punchedCards);
-      //       // newPunchedCards.push(fromText("")!);
-      //       // setPunchedCards(newPunchedCards);
-      //       setPunchedCards([
-      //         ...newPunchedCards.slice(0, index),
-      //         fromText("")!,
-      //         ...newPunchedCards.slice(index, newPunchedCards.length),
-      //       ]);
-      //     }}
-      //   >
-      //     {/* Add a punched card */}
-      //   </button>
-      // </div>
       <button
-        // className=" my-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4"
         className={
           "w-8 h-8 rounded-full border-2 border-gray-500 flex mx-auto overflow-visible hover:before:text-xl hover:before:bg-slate-100 hover:before:bg-opacity-30 hover:before:text-slate-300 hover:before:content-['Add_a_punched_card']"
         }
@@ -84,7 +66,7 @@ export const App: FC = () => {
         .map((punchedCard, i) => {
           return (
             <div className="flex">
-              <div className="w-[64rem] mx-auto my-4 p-4 pt-24 bg-amber-50 flex justify-between cut">
+              <div className="w-[64rem] ml-auto my-4 p-4 pt-24 bg-amber-50 flex justify-between cut">
                 <>
                   {punchedCard.map((ascii, j) => {
                     return (
@@ -124,7 +106,7 @@ export const App: FC = () => {
               </div>
 
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 h-8 my-auto"
+                className="text-gray-400 m-auto"
                 onClick={() => {
                   const newPunchedCards = clone(punchedCards);
                   newPunchedCards.splice(i, 1);
@@ -136,7 +118,7 @@ export const App: FC = () => {
                   });
                 }}
               >
-                Remove
+                <FaTrashAlt className="w-8 h-8" />
               </button>
             </div>
           );
