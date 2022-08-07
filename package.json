@@ -3,6 +3,11 @@
   "displayName": "Punched card",
   "description": "",
   "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajfAfg/vscode-punched-card"
+  },
   "engines": {
     "vscode": "^1.69.0"
   },
