@@ -1,7 +1,7 @@
 {
   "name": "punched-card",
   "displayName": "Punched card",
-  "description": "",
+  "description": "A Visual Studio Code extension for jokes that allows editing files using punched cards",
   "version": "0.0.3",
   "publisher": "ajfAfg",
   "license": "MIT",
@@ -13,7 +13,7 @@
     "vscode": "^1.69.0"
   },
   "categories": [
-    "Other"
+    "Visualization"
   ],
   "activationEvents": [
     "onCustomEditor:punched-card.edit"
